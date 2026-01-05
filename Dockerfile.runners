@@ -1,0 +1,12 @@
+FROM n8nio/runners:latest
+
+USER root
+
+RUN python3 -m venv /home/runner/.venv \
+ && /home/runner/.venv/bin/pip install --upgrade pip setuptools wheel
+
+WORKDIR /tmp
+COPY workspace/requirements.txt /tmp/requirements.txt
+RUN /home/runner/.venv/bin/pip install -r /tmp/requirements.txt
+
+USER runner

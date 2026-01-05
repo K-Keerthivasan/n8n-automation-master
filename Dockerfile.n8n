@@ -1,0 +1,16 @@
+FROM docker.n8n.io/n8nio/n8n:2.0.0
+
+USER root
+
+RUN apk add --no-cache \
+  python3 py3-pip py3-virtualenv \
+  build-base gcc musl-dev libffi-dev openssl-dev
+
+# Create a venv that n8n can use for Execute Command / scripts
+RUN python3 -m venv /home/node/.venv \
+  && /home/node/.venv/bin/pip install --upgrade pip setuptools wheel \
+  && chown -R node:node /home/node/.venv
+
+ENV PATH="/home/node/.venv/bin:$PATH"
+
+USER node
