@@ -5,12 +5,6 @@ USER root
 RUN apk add --no-cache \
   python3 py3-pip py3-virtualenv \
   build-base gcc musl-dev libffi-dev openssl-dev
-
-# Create a venv that n8n can use for Execute Command / scripts
-RUN python3 -m venv /home/node/.venv \
-  && /home/node/.venv/bin/pip install --upgrade pip setuptools wheel \
-  && chown -R node:node /home/node/.venv
-
-ENV PATH="/home/node/.venv/bin:$PATH"
+ENV PATH="/home/keerthi/Dev/ai/n8n-automation-master/.venv/bin:$PATH"
 
 USER node

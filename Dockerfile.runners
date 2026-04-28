@@ -2,11 +2,8 @@ FROM n8nio/runners:latest
 
 USER root
 
-RUN python3 -m venv /home/runner/.venv \
- && /home/runner/.venv/bin/pip install --upgrade pip setuptools wheel
+RUN ln -sf /usr/local/bin/python3 /usr/bin/python3
 
-WORKDIR /tmp
-COPY workspace/requirements.txt /tmp/requirements.txt
-RUN /home/runner/.venv/bin/pip install -r /tmp/requirements.txt
+ENV PATH="/home/keerthi/Dev/ai/n8n-automation-master/.venv/bin:$PATH"
 
 USER runner
