@@ -2,8 +2,10 @@ FROM n8nio/runners:latest
 
 USER root
 
-RUN ln -sf /usr/local/bin/python3 /usr/bin/python3
+RUN ln -sf /usr/local/bin/python3 /usr/bin/python3 \
+  && ln -sf /usr/local/bin/python3 /usr/local/bin/python
 
-ENV PATH="/home/keerthi/Dev/ai/n8n-automation-master/.venv/bin:$PATH"
+COPY workspace/requirements.txt /tmp/workspace-requirements.txt
+RUN if command -v pip3 >/dev/null 2>&1; then pip3 install -r /tmp/workspace-requirements.txt; fi
 
 USER runner

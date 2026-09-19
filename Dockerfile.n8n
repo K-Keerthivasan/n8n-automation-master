@@ -1,10 +1,15 @@
-FROM docker.n8n.io/n8nio/n8n:2.0.0
+FROM n8nio/n8n:2.0.0
 
 USER root
 
 RUN apk add --no-cache \
   python3 py3-pip py3-virtualenv \
   build-base gcc musl-dev libffi-dev openssl-dev
-ENV PATH="/home/keerthi/Dev/ai/n8n-automation-master/.venv/bin:$PATH"
+
+RUN ln -sf /usr/bin/python3 /usr/local/bin/python \
+  && ln -sf /usr/bin/pip3 /usr/local/bin/pip
+
+COPY workspace/requirements.txt /tmp/workspace-requirements.txt
+RUN pip install --break-system-packages -r /tmp/workspace-requirements.txt
 
 USER node

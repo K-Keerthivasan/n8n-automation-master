@@ -42,11 +42,10 @@ services:
       - N8N_RUNNERS_AUTH_TOKEN=change-this-to-a-long-random-secret
       - N8N_NATIVE_PYTHON_RUNNER=true
       - N8N_PYTHON_ENABLED=true
-      - PYTHON_EXECUTABLE=/home/keerthi/Dev/ai/n8n-automation-master/.venv/bin/python
+      - PYTHON_EXECUTABLE=/usr/local/bin/python
     volumes:
       - n8n_data:/home/node/.n8n
       - n8n_files:/home/node/.n8n-files
-      - .:/home/keerthi/Dev/ai/n8n-automation-master
       - ./workspace:/workspace
       - ./public:/home/node/files
 
@@ -64,10 +63,9 @@ services:
       - N8N_RUNNERS_TASK_BROKER_URI=http://n8n:5679
       - N8N_RUNNERS_AUTH_TOKEN=change-this-to-a-long-random-secret
       - N8N_RUNNERS_LAUNCHER_HEALTH_CHECK_PORT=5680
-      - PYTHON_EXECUTABLE=/home/keerthi/Dev/ai/n8n-automation-master/.venv/bin/python
+      - PYTHON_EXECUTABLE=/usr/local/bin/python
 
     volumes:
-      - .:/home/keerthi/Dev/ai/n8n-automation-master
       - ./workspace:/workspace
       - ./public:/home/node/files
     depends_on:
